@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-label="Sigil — pack, sign, publish, update from one sigil.yaml">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101322"/>
+      <stop offset="1" stop-color="#0B0D18"/>
+    </linearGradient>
+    <linearGradient id="hex" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E4DDD0"/>
+      <stop offset="1" stop-color="#CFC6B6"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#1C2033" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="320" fill="url(#bg)"/>
+  <rect width="1200" height="320" fill="url(#grid)" opacity="0.6"/>
+  <rect x="0" y="0" width="1200" height="320" fill="none" stroke="#2A2F45" stroke-width="2"/>
+
+  <!-- mark: hexagon with a stroked S -->
+  <g transform="translate(150 160)">
+    <polygon points="0,-118 102,-59 102,59 0,118 -102,59 -102,-59" fill="url(#hex)" stroke="#0E1020" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M44,-66 L-40,-66 L-40,-24 L40,24 L40,66 L-44,66"
+          fill="none" stroke="#0E1020" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M44,-66 L-40,-66 L-40,-24 L40,24 L40,66 L-44,66"
+          fill="none" stroke="#A8865A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+  </g>
+
+  <!-- wordmark -->
+  <text x="320" y="130" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="88" font-weight="700" fill="#E4DDD0" letter-spacing="2">Sigil</text>
+  <text x="320" y="182" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="26" fill="#A9A395">Declarative desktop-software distribution for Windows</text>
+
+  <!-- pipeline -->
+  <g font-family="Consolas, 'Cascadia Mono', 'JetBrains Mono', monospace" font-size="24" fill="#E4DDD0">
+    <rect x="320" y="216" width="118" height="46" rx="8" fill="#171B2E" stroke="#2A2F45"/>
+    <text x="379" y="247" text-anchor="middle">pack</text>
+    <text x="456" y="247" fill="#A8865A">→</text>
+    <rect x="482" y="216" width="118" height="46" rx="8" fill="#171B2E" stroke="#2A2F45"/>
+    <text x="541" y="247" text-anchor="middle">sign</text>
+    <text x="618" y="247" fill="#A8865A">→</text>
+    <rect x="644" y="216" width="146" height="46" rx="8" fill="#171B2E" stroke="#2A2F45" stroke-dasharray="6 5"/>
+    <text x="717" y="247" text-anchor="middle" fill="#8B8779">publish</text>
+    <text x="808" y="247" fill="#A8865A">→</text>
+    <rect x="834" y="216" width="136" height="46" rx="8" fill="#171B2E" stroke="#2A2F45"/>
+    <text x="902" y="247" text-anchor="middle">update</text>
+  </g>
+  <text x="320" y="292" font-family="Consolas, 'Cascadia Mono', 'JetBrains Mono', monospace" font-size="18" fill="#7F7B6F">one sigil.yaml · Native AOT · MIT</text>
+</svg>
