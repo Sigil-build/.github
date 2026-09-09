@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/Sigil-build/sigil">
-    <img src="https://raw.githubusercontent.com/Sigil-build/.github/main/profile/banner.svg" alt="Sigil — pack, sign, publish, update from one sigil.yaml" width="100%">
+    <img src="https://raw.githubusercontent.com/Sigil-build/.github/main/profile/banner.svg?v=2" alt="Sigil — pack, sign, publish, update from one sigil.yaml" width="100%">
   </a>
 </p>
 
