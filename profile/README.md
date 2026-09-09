@@ -12,8 +12,8 @@
   <a href="https://sigil.build"><img src="https://img.shields.io/badge/web-sigil.build-c9b98a?labelColor=101322" alt="sigil.build"></a>
 </p>
 
-**Sigil** is an open-source CLI that replaces NSIS, Inno Setup, and WiX with one
-declarative `sigil.yaml`. It packs your Windows app into a branded, self-elevating
+**Sigil** is an open-source CLI for shipping Windows desktop software from one
+declarative `sigil.yaml`. It packs your app into a branded, self-elevating
 `Setup.exe` (or MSIX / ZIP), signs it with a local certificate or Azure Trusted
 Signing, and ships a signed full-package update engine — all from a single
 Native AOT binary with no runtime to install.
@@ -83,13 +83,13 @@ Add/Remove Programs entry for free. Silent mode is one flag: `/S`.
 - 🗺️ [Changelog and known limitations](https://github.com/Sigil-build/sigil/blob/main/CHANGELOG.md) · [Architecture decisions](https://github.com/Sigil-build/sigil/tree/main/docs/architecture)
 - 🤝 [Contributing](https://github.com/Sigil-build/sigil/blob/main/CONTRIBUTING.md) · [Security policy](https://github.com/Sigil-build/sigil/blob/main/SECURITY.md) · [Issues](https://github.com/Sigil-build/sigil/issues)
 
-## Why another installer tool?
+## What Sigil is
 
-Desktop installer tooling makes you choose between expensive GUI suites and
-free-but-painful XML or Pascal scripting. Sigil sits in the middle: a
-readable manifest you can review in a pull request, headless cloud signing
-that fits CI, and an update path that verifies signatures before it runs
-anything.
+Sigil is a manifest-first tool: a readable `sigil.yaml` you can review in a
+pull request, headless code signing that fits CI, and an update path that
+verifies signatures before it runs anything. It is one more option for
+shipping Windows software, built for teams who want the whole pipeline in
+version control.
 
 <p align="center">
   <sub>MIT licensed · built with .NET 10 and Avalonia · made in Ukraine 🇺🇦</sub>
