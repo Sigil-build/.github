@@ -10,7 +10,16 @@
   <img src="https://img.shields.io/badge/made%20in-Ukraine-c9b98a?labelColor=101322" alt="Made in Ukraine">
 </p>
 
-**Sigil.build** makes desktop tools for Windows and Linux. Each one is a single native binary built with .NET 10 Native AOT and Avalonia: it starts at once and needs no runtime. One site documents them all: [docs.sigil.build](https://docs.sigil.build).
+**Sigil.build** is not one repository but a family of separate products, each made for its own job. Their source is public, and they are made in Ukraine. Each is a single native binary built with .NET 10 Native AOT and Avalonia: it starts at once and needs no runtime. One site documents them all: [docs.sigil.build](https://docs.sigil.build).
+
+## Projects
+
+| Project | What it is for | Platforms | Status | License |
+|---|---|---|---|---|
+| [**Dictum**](#dictum-voice-to-text) | Voice to text: hold a hotkey, speak, and the text appears where you type | Windows 11, Linux | [![Latest release](https://img.shields.io/github/v/release/Sigil-build/dictum?label=&color=c9b98a&labelColor=101322)](https://github.com/Sigil-build/dictum/releases/latest) | MIT (open source) |
+| [**Sigil**](#sigil-ship-windows-software-from-one-sigilyaml) | Windows installers, signing and updates from one `sigil.yaml` | Windows | pre-MVP | [Sigil License 1.0](https://github.com/Sigil-build/sigil/blob/release/v0.1.0-alpha/LICENSE) (source-available) |
+
+More projects are on the way. Watch this organization to hear when the next one arrives.
 
 ## Dictum: voice to text
 
