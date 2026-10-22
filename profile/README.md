@@ -1,96 +1,67 @@
 <p align="center">
-  <a href="https://github.com/Sigil-build/sigil">
-    <img src="https://raw.githubusercontent.com/Sigil-build/.github/main/profile/banner.svg?v=2" alt="Sigil — pack, sign, publish, update from one sigil.yaml" width="100%">
+  <a href="https://docs.sigil.build">
+    <img src="https://raw.githubusercontent.com/Sigil-build/.github/main/profile/banner.svg?v=3" alt="Sigil.build — Native AOT desktop tools for Windows and Linux: Sigil and Dictum" width="100%">
   </a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/Sigil-build/sigil/actions/workflows/ci.yml"><img src="https://github.com/Sigil-build/sigil/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-  <a href="https://github.com/Sigil-build/sigil/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-c9b98a?labelColor=101322" alt="MIT license"></a>
+  <a href="https://docs.sigil.build"><img src="https://img.shields.io/badge/docs-docs.sigil.build-c9b98a?labelColor=101322" alt="Documentation: docs.sigil.build"></a>
   <img src="https://img.shields.io/badge/.NET-10%20%C2%B7%20Native%20AOT-c9b98a?labelColor=101322" alt=".NET 10, Native AOT">
-  <img src="https://img.shields.io/badge/status-pre--MVP-a8865a?labelColor=101322" alt="Status: pre-MVP">
-  <a href="https://sigil.build"><img src="https://img.shields.io/badge/web-sigil.build-c9b98a?labelColor=101322" alt="sigil.build"></a>
+  <img src="https://img.shields.io/badge/made%20in-Ukraine-c9b98a?labelColor=101322" alt="Made in Ukraine">
 </p>
 
-**Sigil** is an open-source CLI for shipping Windows desktop software from one
-declarative `sigil.yaml`. It packs your app into a branded, self-elevating
-`Setup.exe` (or MSIX / ZIP), signs it with a local certificate or Azure Trusted
-Signing, and ships a signed full-package update engine — all from a single
-Native AOT binary with no runtime to install.
+**Sigil.build** is not one repository but a family of separate products, each made for its own job. Their source is public, and they are made in Ukraine. Each is a single native binary built with .NET 10 Native AOT and Avalonia: it starts at once and needs no runtime. One site documents them all: [docs.sigil.build](https://docs.sigil.build).
 
-> **Status: pre-MVP, Windows-first.** No published binaries yet; build from
-> source. The `publish` stage is not built, and delta updates are deferred.
-> Every `0.x` release may break the manifest schema or CLI flags.
+## Projects
 
-## The pipeline
+| Project | What it is for | Platforms | Status | License |
+|---|---|---|---|---|
+| [**Dictum**](#dictum-voice-to-text) | Voice to text: hold a hotkey, speak, and the text appears where you type | Windows 11, Linux | [![Latest release](https://img.shields.io/github/v/release/Sigil-build/dictum?label=&color=c9b98a&labelColor=101322)](https://github.com/Sigil-build/dictum/releases/latest) | MIT (open source) |
+| [**Sigil**](#sigil-ship-windows-software-from-one-sigilyaml) | Windows installers, signing and updates from one `sigil.yaml` | Windows | pre-MVP | [Sigil License 1.0](https://github.com/Sigil-build/sigil/blob/release/v0.1.0-alpha/LICENSE) (source-available) |
+
+More projects are on the way. Watch this organization to hear when the next one arrives.
+
+## Dictum: voice to text
+
+[![Latest release](https://img.shields.io/github/v/release/Sigil-build/dictum?label=release&color=c9b98a&labelColor=101322)](https://github.com/Sigil-build/dictum/releases/latest)
+[![CI](https://github.com/Sigil-build/dictum/actions/workflows/ci.yml/badge.svg)](https://github.com/Sigil-build/dictum/actions/workflows/ci.yml)
+[![MIT license](https://img.shields.io/badge/license-MIT-c9b98a?labelColor=101322)](https://github.com/Sigil-build/dictum/blob/main/LICENSE)
+
+Hold a hotkey, speak, and the text appears where you are typing, in any app.
+
+- **Speech recognition runs on your computer** with Whisper, on the GPU through Vulkan when it can. Nothing leaves your machine unless you connect a server yourself.
+- **Several languages.** The main language has priority, so your words are not translated by mistake.
+- **Your own LLM clean-up.** Optionally, a server you run fixes punctuation and slips.
+- **Your setup:** profiles with their own hotkeys, your words, and replace rules.
+- **Two programs:** a tray app with a setup wizard, and a command line with `dictum doctor`.
+
+Windows 11 and Linux (x86-64) · open source under the MIT License.
+
+📥 [Download](https://github.com/Sigil-build/dictum/releases/latest) · 📖 [Documentation](https://docs.sigil.build/dictum/) · 🇺🇦 [Українською](https://docs.sigil.build/uk/dictum/) · 🔒 [Privacy](https://docs.sigil.build/dictum/privacy/) · 💻 [Source](https://github.com/Sigil-build/dictum)
+
+## Sigil: ship Windows software from one `sigil.yaml`
+
+[![CI](https://github.com/Sigil-build/sigil/actions/workflows/ci.yml/badge.svg?branch=release%2Fv0.1.0-alpha)](https://github.com/Sigil-build/sigil/actions/workflows/ci.yml)
+[![License: Sigil License 1.0](https://img.shields.io/badge/license-Sigil%201.0-c9b98a?labelColor=101322)](https://github.com/Sigil-build/sigil/blob/release/v0.1.0-alpha/LICENSE)
+![Status: pre-MVP](https://img.shields.io/badge/status-pre--MVP-a8865a?labelColor=101322)
+
+Sigil packs a desktop app into a branded, self-elevating `Setup.exe`, an MSIX or a ZIP. It signs the result and ships signed updates. All of it comes from one declarative `sigil.yaml` you can review in a pull request, run by a single Native AOT CLI.
 
 | Stage | What it does | Today |
 |---|---|---|
-| **pack** | `sigil.yaml` → `Setup.exe` wizard, MSIX, or ZIP | ✅ shipping |
-| **sign** | Authenticode via `signtool` or Azure Trusted Signing, with an audit log | ✅ shipping |
-| **publish** | Hosting + release-channel distribution | 🚧 not built |
-| **update** | Signed channel manifests, `/Update` fetches the full new package | ✅ shipping · delta patches deferred |
+| **pack** | `sigil.yaml` → `Setup.exe` wizard, MSIX, or ZIP | ✅ |
+| **sign** | Authenticode via `signtool` or Azure Trusted Signing, with an audit log | ✅ |
+| **publish** | Hosting and release-channel distribution | 🚧 not built |
+| **update** | Signed channel manifests; `/Update` fetches the full new package | ✅ · delta patches deferred |
 
-## What a manifest looks like
+> **Status: pre-MVP, Windows-first.** Build from source; every `0.x` release may change the manifest schema or the CLI. The code is source-available under the [Sigil License 1.0](https://github.com/Sigil-build/sigil/blob/release/v0.1.0-alpha/LICENSE), not open source; [ADR-016](https://docs.sigil.build/sigil/architecture/adr-016-licensing/) explains why.
 
-```yaml
-spec: v1.0
+📖 [Documentation](https://docs.sigil.build/sigil/) · 🚀 [Getting started](https://docs.sigil.build/sigil/getting-started/) · 📋 [Manifest](https://docs.sigil.build/sigil/manifest-reference/) · ⌨️ [CLI](https://docs.sigil.build/sigil/cli-reference/) · 🩺 [Diagnostics](https://docs.sigil.build/sigil/diagnostics/) · 💻 [Source](https://github.com/Sigil-build/sigil)
 
-app:
-  id: com.example.HelloSigil
-  name: HelloSigil
-  version: 1.0.0
-  publisher: Example, Inc.
+## Security
 
-build:
-  source: ./payload
-
-package:
-  formats: [exe]
-  architectures: [x64]
-
-install_steps:
-  - id: copy-app
-    type: file_copy
-    from: payload/**
-    to: "{install_dir}"
-  - id: start-menu
-    type: shortcut_create
-    target: "{install_dir}\app.exe"
-    location: start_menu
-    name: HelloSigil
-```
-
-```bash
-sigil init                      # scaffold a sigil.yaml (prompts, or pass flags)
-sigil validate                  # JSON-schema + typed diagnostics (SIG0xxx)
-sigil pack                      # → dist/HelloSigil-1.0.0-x64-Setup.exe
-sigil sign                      # always last: stamping invalidates a signature
-```
-
-Every install step is journaled, so a failed or cancelled install rolls back
-files, registry writes, shortcuts, services, and COM registrations in reverse.
-The wizard is themed from two manifest colours, supports install-time
-parameters and `when:` conditions, and produces an `uninstall.exe` plus an
-Add/Remove Programs entry for free. Silent mode is one flag: `/S`.
-
-## Start here
-
-- 📦 [**sigil**](https://github.com/Sigil-build/sigil) — the CLI, install engine, and installer host
-- 🚀 [Getting started](https://github.com/Sigil-build/sigil/blob/main/docs/getting-started.md) — `init` → `validate` → `pack` in five minutes
-- 📖 [Manifest reference](https://github.com/Sigil-build/sigil/blob/main/docs/manifest-reference.md) · [CLI reference](https://github.com/Sigil-build/sigil/blob/main/docs/cli-reference.md) · [setup.exe flags](https://github.com/Sigil-build/sigil/blob/main/docs/setup-exe-reference.md)
-- 🧩 [Install steps](https://github.com/Sigil-build/sigil/blob/main/docs/guides/install-steps.md) · [Installer wizard](https://github.com/Sigil-build/sigil/blob/main/docs/guides/installer-wizard.md) · [Signing](https://github.com/Sigil-build/sigil/blob/main/docs/guides/signing.md) · [Updates](https://github.com/Sigil-build/sigil/blob/main/docs/guides/updates.md)
-- 🗺️ [Changelog and known limitations](https://github.com/Sigil-build/sigil/blob/main/CHANGELOG.md) · [Architecture decisions](https://github.com/Sigil-build/sigil/tree/main/docs/architecture)
-- 🤝 [Contributing](https://github.com/Sigil-build/sigil/blob/main/CONTRIBUTING.md) · [Security policy](https://github.com/Sigil-build/sigil/blob/main/SECURITY.md) · [Issues](https://github.com/Sigil-build/sigil/issues)
-
-## What Sigil is
-
-Sigil is a manifest-first tool: a readable `sigil.yaml` you can review in a
-pull request, headless code signing that fits CI, and an update path that
-verifies signatures before it runs anything. It is one more option for
-shipping Windows software, built for teams who want the whole pipeline in
-version control.
+Report a vulnerability privately through each repository's Security tab: [Dictum](https://github.com/Sigil-build/dictum/security/policy) · [Sigil](https://github.com/Sigil-build/sigil/security/policy). How to verify a download is described in each project's documentation.
 
 <p align="center">
-  <sub>MIT licensed · built with .NET 10 and Avalonia · made in Ukraine 🇺🇦</sub>
+  <sub>Made in Ukraine 🇺🇦 · <a href="https://docs.sigil.build">docs.sigil.build</a></sub>
 </p>
